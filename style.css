@@ -441,10 +441,32 @@ h4,
   border-radius: calc(var(--sakaii-radius-md) - 2px) !important;
 }
 
+.cardPadder {
+  background: transparent !important;
+}
+
 .cardImageContainer {
   position: relative;
   overflow: hidden !important;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)) !important;
+}
+
+.cardContent,
+.cardContent-button,
+.cardOverlayContainer,
+.cardImage {
+  border-radius: inherit !important;
+}
+
+.cardContent,
+.cardOverlayContainer {
+  inset: 0 !important;
+}
+
+.cardImage {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
 }
 
 .cardImage {
@@ -551,6 +573,12 @@ h4,
 .cardScalable:hover .cardOverlayContainer::after,
 .card:hover .cardOverlayContainer::after {
   opacity: 1;
+}
+
+.cardText-first,
+.cardText-secondary,
+.cardFooterText {
+  display: block !important;
 }
 
 .btnPlay,
