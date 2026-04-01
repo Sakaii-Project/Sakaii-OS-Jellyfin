@@ -1,0 +1,64 @@
+:root {
+  color-scheme: dark;
+
+  /* Core palette */
+  --sakaii-bg-0: #0a0b0d;
+  --sakaii-bg-1: #111317;
+  --sakaii-bg-2: #171a1f;
+  --sakaii-bg-3: #1d2128;
+
+  /* Glass and borders */
+  --sakaii-surface-glass: rgba(22, 24, 30, 0.58);
+  --sakaii-surface-glass-strong: rgba(22, 24, 30, 0.74);
+  --sakaii-border-subtle: rgba(255, 255, 255, 0.08);
+  --sakaii-border-soft: rgba(255, 255, 255, 0.04);
+
+  /* Typography */
+  --sakaii-text-primary: #f5f7fa;
+  --sakaii-text-secondary: #c7ced8;
+  --sakaii-text-muted: #8e98a6;
+
+  /* Accent */
+  --sakaii-accent: #8fa8c7;
+  --sakaii-accent-soft: #b8c9db;
+  --sakaii-accent-rgb: 143, 168, 199;
+  --sakaii-accent-strong-rgb: 184, 201, 219;
+
+  /* Feedback */
+  --sakaii-success: #7fb59a;
+  --sakaii-warning: #d6b36a;
+  --sakaii-danger: #b86a6a;
+
+  /* Radius */
+  --sakaii-radius-sm: 10px;
+  --sakaii-radius-md: 16px;
+  --sakaii-radius-lg: 24px;
+  --sakaii-radius-xl: 32px;
+
+  /* Shadows */
+  --sakaii-shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.28);
+  --sakaii-shadow-depth: 0 20px 60px rgba(0, 0, 0, 0.4);
+  --sakaii-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 18px 50px rgba(0, 0, 0, 0.36);
+  --sakaii-shadow-header: 0 18px 45px rgba(0, 0, 0, 0.28);
+  --sakaii-shadow-card: 0 16px 34px rgba(0, 0, 0, 0.2);
+  --sakaii-shadow-card-hover: 0 24px 52px rgba(0, 0, 0, 0.28);
+  --sakaii-shadow-hero: 0 28px 80px rgba(0, 0, 0, 0.42);
+  --sakaii-shadow-login: 0 30px 90px rgba(0, 0, 0, 0.42);
+  --sakaii-shadow-popover: 0 22px 60px rgba(0, 0, 0, 0.34);
+
+  /* Motion */
+  --sakaii-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --sakaii-speed-fast: 180ms;
+  --sakaii-speed-base: 260ms;
+  --sakaii-speed-slow: 320ms;
+
+  /* Blur */
+  --sakaii-blur-soft: 16px;
+  --sakaii-blur-strong: 28px;
+
+  /* Layout */
+  --sakaii-shell-padding: 24px;
+  --sakaii-header-height: 72px;
+  --sakaii-drawer-width: 280px;
+}

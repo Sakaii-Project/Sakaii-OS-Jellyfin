@@ -1,0 +1,1189 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("./tokens.css");
+
+/*
+  Sakaii OS for Jellyfin
+  Foundation build
+  This file intentionally starts small so the visual system can grow coherently.
+*/
+
+:root {
+  --accent: var(--sakaii-accent-rgb);
+  --rounding: 16px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--accent), 0.45) rgba(255, 255, 255, 0.04);
+}
+
+::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(var(--accent), 0.58),
+    rgba(var(--accent), 0.3)
+  ) !important;
+  border-radius: 999px !important;
+  border: 2px solid transparent !important;
+  background-clip: padding-box !important;
+}
+
+html,
+body {
+  overflow-x: hidden !important;
+  background: var(--sakaii-bg-0) !important;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+.textActionButton,
+.navMenuOption,
+.cardText,
+.button,
+.emby-input,
+.emby-textarea {
+  font-family: "Inter", sans-serif !important;
+}
+
+.skinBody,
+.pageContainer {
+  background:
+    radial-gradient(circle at top, rgba(var(--accent), 0.08), transparent 38%),
+    radial-gradient(circle at 80% 10%, rgba(var(--sakaii-accent-strong-rgb), 0.05), transparent 30%),
+    linear-gradient(180deg, var(--sakaii-bg-1) 0%, var(--sakaii-bg-0) 100%) !important;
+  color: var(--sakaii-text-primary) !important;
+}
+
+.pageContainer {
+  min-height: 100vh !important;
+}
+
+.skinBody::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 18%),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.02), transparent 28%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.skinBody,
+.pageContainer,
+.mainDrawer,
+.skinHeader {
+  position: relative;
+}
+
+.backgroundContainer.withBackdrop {
+  background-color: rgba(10, 11, 13, 0.42) !important;
+}
+
+.backgroundContainer {
+  background:
+    radial-gradient(circle at 18% 24%, rgba(var(--accent), 0.1), transparent 26%),
+    radial-gradient(circle at 80% 12%, rgba(var(--sakaii-accent-strong-rgb), 0.06), transparent 24%),
+    linear-gradient(180deg, rgba(10, 11, 13, 0.72), rgba(10, 11, 13, 0.9)) !important;
+}
+
+.backdropImage {
+  filter: saturate(0.88) contrast(1.03) brightness(0.44) blur(2px);
+}
+
+.skinHeader,
+.skinHeader.semiTransparent,
+.skinHeader.osdHeader,
+.mainDrawer {
+  background: var(--sakaii-surface-glass) !important;
+  border: 1px solid var(--sakaii-border-soft) !important;
+  backdrop-filter: blur(var(--sakaii-blur-soft)) saturate(125%) !important;
+  -webkit-backdrop-filter: blur(var(--sakaii-blur-soft)) saturate(125%) !important;
+  box-shadow: var(--sakaii-shadow-header) !important;
+}
+
+.skinHeader,
+.skinHeader.semiTransparent,
+.skinHeader.osdHeader {
+  top: 14px !important;
+  left: 18px !important;
+  right: 18px !important;
+  width: auto !important;
+  min-height: var(--sakaii-header-height) !important;
+  border-radius: 999px !important;
+  padding: 0 14px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+    var(--sakaii-surface-glass) !important;
+}
+
+.skinHeader-withBackground,
+.skinHeader.semiTransparent {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+    var(--sakaii-surface-glass-strong) !important;
+}
+
+.headerLeft,
+.headerRight {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.headerTabs,
+.emby-tabs-slider,
+.emby-tab-button {
+  position: relative;
+  z-index: 2;
+}
+
+.headerButton,
+.paper-icon-button-light,
+.btnUserMenu,
+.headerButton.headerButtonRight {
+  min-width: 42px !important;
+  min-height: 42px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  border: 1px solid rgba(255, 255, 255, 0.055) !important;
+  color: var(--sakaii-text-primary) !important;
+}
+
+.headerButton:hover,
+.paper-icon-button-light:hover,
+.btnUserMenu:hover,
+.headerButton.headerButtonRight:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(var(--accent), 0.16) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22) !important;
+}
+
+.mainDrawer {
+  width: min(var(--sakaii-drawer-width), 88vw) !important;
+  border-radius: 0 28px 28px 0 !important;
+  border-left: none !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
+    var(--sakaii-surface-glass-strong) !important;
+}
+
+.mainDrawer-scrollContainer {
+  padding-top: calc(var(--sakaii-header-height) + 18px) !important;
+}
+
+.navMenuOption,
+.navMenuOption-selected,
+.navMenuOption:hover {
+  border-radius: 999px !important;
+  margin: 4px 12px !important;
+  min-height: 44px !important;
+}
+
+.navMenuOption {
+  color: var(--sakaii-text-secondary) !important;
+}
+
+.navMenuOption:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: var(--sakaii-text-primary) !important;
+}
+
+.navMenuOption-selected {
+  background: rgba(var(--accent), 0.16) !important;
+  border: 1px solid rgba(var(--accent), 0.2) !important;
+  color: var(--sakaii-text-primary) !important;
+}
+
+.sectionTitle,
+.sectionTitleTextButton,
+.headerTabs.sectionTabs {
+  letter-spacing: -0.02em;
+}
+
+.emby-tab-button {
+  color: var(--sakaii-text-muted) !important;
+  min-height: 42px !important;
+  border-radius: 999px !important;
+  padding: 0 18px !important;
+  transition:
+    color var(--sakaii-speed-base) var(--sakaii-ease),
+    background-color var(--sakaii-speed-base) var(--sakaii-ease) !important;
+}
+
+.emby-tab-button:hover {
+  color: var(--sakaii-text-primary) !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+}
+
+.emby-tab-button-active {
+  color: var(--sakaii-text-primary) !important;
+  background: rgba(var(--accent), 0.14) !important;
+}
+
+.emby-tabs-slider {
+  height: 0 !important;
+}
+
+.itemsContainer,
+.verticalSection,
+.section0,
+.section1,
+.section2 {
+  position: relative;
+  z-index: 1;
+}
+
+.homeSectionsContainer,
+.sectionTitleContainer-cards {
+  position: relative;
+  z-index: 1;
+}
+
+.homeSectionsContainer {
+  padding-top: calc(var(--sakaii-header-height) + 22px) !important;
+}
+
+.sectionTitleContainer,
+.sectionTitleContainer-cards {
+  margin-bottom: 10px !important;
+}
+
+.sectionTitle {
+  font-size: clamp(1.2rem, 1rem + 0.7vw, 1.75rem) !important;
+  font-weight: 700 !important;
+  color: var(--sakaii-text-primary) !important;
+}
+
+.listItem,
+.card,
+.visualCardBox,
+.dialog,
+.actionSheetContent,
+.selectionCommandsPanel,
+.upNextDialog {
+  position: relative;
+  overflow: hidden;
+}
+
+.dialog,
+.actionSheetContent,
+.selectionCommandsPanel,
+.upNextDialog,
+.cardOverlayFab-primary,
+.countIndicator,
+.playedIndicator {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012)),
+    rgba(20, 22, 27, 0.86) !important;
+  border: 1px solid var(--sakaii-border-subtle) !important;
+  box-shadow: var(--sakaii-shadow-depth) !important;
+}
+
+.dialogBackdrop,
+.transparentDocument {
+  background: rgba(6, 7, 9, 0.52) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.dialog,
+.actionSheetContent,
+.selectionCommandsPanel,
+.upNextDialog,
+.prompt {
+  border-radius: var(--sakaii-radius-lg) !important;
+}
+
+.paperList,
+.contextMenu,
+.toast,
+.dashboardSection,
+.dashboardContent,
+.cardContent-shadow,
+.programCardContent {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012)),
+    rgba(20, 22, 27, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: var(--sakaii-shadow-popover) !important;
+  border-radius: var(--sakaii-radius-md) !important;
+}
+
+.listItem-button,
+.menuOption,
+.selectLabelFocused,
+.selectArrowContainer,
+.fab,
+.paper-icon-button-light,
+.formDialogFooterItem,
+.listItem-border {
+  border-radius: 14px !important;
+}
+
+.menuOption,
+.listItem-button,
+.selectLabel,
+.selectArrowContainer {
+  min-height: 42px !important;
+}
+
+.toast {
+  color: var(--sakaii-text-primary) !important;
+}
+
+.itemProgressBar,
+.playbackProgress,
+.mdl-slider-background-lower,
+.sliderBubble,
+.sliderMarker {
+  border-radius: 999px !important;
+}
+
+.itemProgressBar,
+.playbackProgress,
+.sliderContainer {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+.itemProgressBarForeground,
+.playbackProgress > div,
+.mdl-slider-background-lower,
+.mdl-slider::-webkit-slider-thumb,
+.mdl-slider::-moz-range-thumb {
+  background: linear-gradient(
+    90deg,
+    rgba(var(--accent), 0.88),
+    rgba(var(--sakaii-accent-strong-rgb), 0.95)
+  ) !important;
+}
+
+.mdl-slider::-webkit-slider-thumb,
+.mdl-slider::-moz-range-thumb {
+  border: none !important;
+  box-shadow: 0 0 0 4px rgba(var(--accent), 0.14) !important;
+}
+
+.fab,
+.paper-icon-button-light,
+.cardOverlayFab-primary,
+.cardOverlayButton-br,
+.headerButton,
+.detailButton,
+.emby-tab-button,
+.navMenuOption {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.touch-menu-la,
+.btnManualSubtitles,
+.subtitleappearance-preview,
+.listItemIcon {
+  color: var(--sakaii-text-secondary) !important;
+}
+
+.emby-button,
+.raised,
+.fab,
+.paper-icon-button-light {
+  transition:
+    transform var(--sakaii-speed-base) var(--sakaii-ease),
+    background-color var(--sakaii-speed-base) var(--sakaii-ease),
+    border-color var(--sakaii-speed-base) var(--sakaii-ease),
+    box-shadow var(--sakaii-speed-base) var(--sakaii-ease) !important;
+}
+
+.cardBox,
+.cardImageContainer,
+.dialog,
+.prompt,
+.formDialogFooterItem,
+.visualCardBox {
+  border-radius: var(--sakaii-radius-md) !important;
+}
+
+.card {
+  z-index: 1;
+}
+
+.cardScalable {
+  transition: transform var(--sakaii-speed-base) var(--sakaii-ease) !important;
+}
+
+.cardBox {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.01)),
+    rgba(16, 18, 22, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+  box-shadow: var(--sakaii-shadow-card) !important;
+  overflow: hidden !important;
+  transition:
+    transform var(--sakaii-speed-base) var(--sakaii-ease),
+    box-shadow var(--sakaii-speed-base) var(--sakaii-ease),
+    border-color var(--sakaii-speed-base) var(--sakaii-ease),
+    background-color var(--sakaii-speed-base) var(--sakaii-ease) !important;
+}
+
+.cardImageContainer,
+.cardPadder {
+  border-radius: calc(var(--sakaii-radius-md) - 2px) !important;
+}
+
+.cardImageContainer {
+  position: relative;
+  overflow: hidden !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)) !important;
+}
+
+.cardImage {
+  transition:
+    transform var(--sakaii-speed-slow) var(--sakaii-ease),
+    filter var(--sakaii-speed-base) var(--sakaii-ease) !important;
+}
+
+.cardOverlayContainer {
+  opacity: 0 !important;
+  background:
+    linear-gradient(180deg, rgba(8, 9, 11, 0.02) 0%, rgba(8, 9, 11, 0.3) 55%, rgba(8, 9, 11, 0.7) 100%) !important;
+  border-radius: calc(var(--sakaii-radius-md) - 2px) !important;
+  transition:
+    opacity var(--sakaii-speed-base) var(--sakaii-ease),
+    backdrop-filter var(--sakaii-speed-base) var(--sakaii-ease) !important;
+  backdrop-filter: blur(0px) !important;
+  -webkit-backdrop-filter: blur(0px) !important;
+}
+
+.cardOverlayContainer::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(180deg, transparent 0%, rgba(var(--accent), 0.08) 100%);
+  opacity: 0;
+  transition: opacity var(--sakaii-speed-base) var(--sakaii-ease);
+  pointer-events: none;
+}
+
+.cardOverlayFab-primary,
+.cardOverlayButton-br {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)),
+    rgba(18, 20, 24, 0.78) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: var(--sakaii-text-primary) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+.cardOverlayFab-primary:hover,
+.cardOverlayButton-br:hover {
+  background:
+    linear-gradient(180deg, rgba(var(--accent), 0.22), rgba(var(--accent), 0.08)),
+    rgba(18, 20, 24, 0.82) !important;
+  border-color: rgba(var(--accent), 0.2) !important;
+}
+
+.cardText {
+  padding-top: 12px !important;
+}
+
+.cardText-first,
+.textActionButton,
+.cardTextButton {
+  color: var(--sakaii-text-primary) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.015em !important;
+}
+
+.cardText-secondary,
+.secondaryText,
+.cardFooterText {
+  color: var(--sakaii-text-muted) !important;
+}
+
+.emby-button:hover,
+.paper-icon-button-light:hover,
+.card:hover .cardBox {
+  transform: translateY(-2px) !important;
+}
+
+.cardScalable:hover,
+.card:hover {
+  z-index: 8;
+}
+
+.cardScalable:hover .cardBox,
+.card:hover .cardBox {
+  transform: translateY(-6px) scale(1.018) !important;
+  border-color: rgba(var(--accent), 0.14) !important;
+  box-shadow: var(--sakaii-shadow-card-hover) !important;
+}
+
+.cardScalable:hover .cardImage,
+.card:hover .cardImage {
+  transform: scale(1.04) !important;
+  filter: saturate(1.02) contrast(1.02) brightness(1.01) !important;
+}
+
+.cardScalable:hover .cardOverlayContainer,
+.card:hover .cardOverlayContainer {
+  opacity: 1 !important;
+  backdrop-filter: blur(3px) !important;
+  -webkit-backdrop-filter: blur(3px) !important;
+}
+
+.cardScalable:hover .cardOverlayContainer::after,
+.card:hover .cardOverlayContainer::after {
+  opacity: 1;
+}
+
+.btnPlay,
+.raised,
+.emby-button[type="submit"] {
+  background: rgba(var(--accent), 0.18) !important;
+  color: var(--sakaii-text-primary) !important;
+  border: 1px solid rgba(var(--accent), 0.22) !important;
+  box-shadow: var(--sakaii-shadow-soft) !important;
+}
+
+.btnPlay:hover,
+.raised:hover,
+.emby-button[type="submit"]:hover {
+  background: rgba(var(--accent), 0.26) !important;
+  border-color: rgba(var(--accent), 0.34) !important;
+}
+
+.emby-input,
+.emby-textarea {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid var(--sakaii-border-subtle) !important;
+  color: var(--sakaii-text-primary) !important;
+  border-radius: var(--sakaii-radius-sm) !important;
+}
+
+.emby-input:focus,
+.emby-textarea:focus {
+  border-color: rgba(var(--accent), 0.42) !important;
+  box-shadow: 0 0 0 3px rgba(var(--accent), 0.12) !important;
+}
+
+.countIndicator,
+.playedIndicator,
+.fullSyncIndicator,
+.indicator {
+  border-radius: 999px !important;
+  color: var(--sakaii-text-primary) !important;
+  padding: 4px 10px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+.playedIndicator {
+  background: rgba(var(--accent), 0.16) !important;
+  border: 1px solid rgba(var(--accent), 0.2) !important;
+}
+
+.countIndicator {
+  background: rgba(12, 14, 18, 0.7) !important;
+}
+
+.cardIndicators,
+.listItemIndicators {
+  top: 10px !important;
+  left: 10px !important;
+  right: 10px !important;
+}
+
+.listItemBody,
+.secondary.listItemBodyText,
+.listItemText {
+  color: var(--sakaii-text-secondary) !important;
+}
+
+.listItem:hover,
+.listItem:focus {
+  background: rgba(255, 255, 255, 0.035) !important;
+  border-radius: var(--sakaii-radius-md) !important;
+}
+
+.detailPageWrapperContainer {
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 11, 13, 0.8) 18%, var(--sakaii-bg-0) 100%) !important;
+}
+
+.detailPagePrimaryContainer,
+.layout-tv .detailPagePrimaryContainer {
+  position: relative;
+  z-index: 1;
+  padding-top: clamp(2rem, 3vw, 4rem) !important;
+}
+
+.detailPageWrapperContainer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 9, 11, 0.04) 0%, rgba(8, 9, 11, 0.2) 30%, rgba(8, 9, 11, 0.65) 100%),
+    radial-gradient(circle at 18% 30%, rgba(var(--accent), 0.08), transparent 34%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.itemBackdrop {
+  filter: saturate(0.92) contrast(1.02) brightness(0.5) blur(1px) !important;
+}
+
+.detailPageContent {
+  position: relative;
+  z-index: 1;
+}
+
+.detailLogo {
+  max-width: min(34vw, 540px) !important;
+  margin-bottom: 1.75rem !important;
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.5)) !important;
+}
+
+.detailPageName,
+.itemName.infoText.parentNameLast {
+  color: var(--sakaii-text-primary) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 0.96 !important;
+}
+
+.itemMiscInfo,
+.itemMiscInfoPrimary {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  align-items: center !important;
+  margin: 0 0 18px !important;
+  color: var(--sakaii-text-secondary) !important;
+}
+
+.itemMiscInfo > span,
+.itemMiscInfoPrimary > span,
+.itemMiscInfo .itemMiscInfo-primary,
+.itemMiscInfoPrimary .itemMiscInfo-primary,
+.mediaInfoItem {
+  padding: 7px 12px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.045) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  color: var(--sakaii-text-secondary) !important;
+}
+
+.detail-clamp-text,
+.overview-text,
+.itemOverviewContent,
+.detailSectionContent {
+  max-width: min(68ch, 72vw) !important;
+  color: var(--sakaii-text-secondary) !important;
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.14rem) !important;
+  line-height: 1.75 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.detailPageSecondaryContainer,
+.detailPageContent .section,
+.detailSection,
+.itemDetailsGroup {
+  position: relative;
+  z-index: 1;
+}
+
+.detailButtons,
+.detailPagePrimaryContainer .mainDetailButtons {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  margin-top: 30px !important;
+  align-items: center !important;
+}
+
+.detailButton,
+.detailButtons .emby-button,
+.mainDetailButtons .emby-button,
+.btnPlay.detailButton {
+  min-height: 48px !important;
+  border-radius: 999px !important;
+  padding: 0 22px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  transition:
+    transform var(--sakaii-speed-base) var(--sakaii-ease),
+    background-color var(--sakaii-speed-base) var(--sakaii-ease),
+    border-color var(--sakaii-speed-base) var(--sakaii-ease),
+    box-shadow var(--sakaii-speed-base) var(--sakaii-ease) !important;
+}
+
+.btnPlay.detailButton,
+.mainDetailButtons .btnPlay,
+.detailPagePrimaryContainer .btnPlay {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(235, 239, 244, 0.92)) !important;
+  color: #0a0b0d !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: var(--sakaii-shadow-hero) !important;
+}
+
+.btnPlay.detailButton:hover,
+.mainDetailButtons .btnPlay:hover,
+.detailPagePrimaryContainer .btnPlay:hover {
+  transform: translateY(-2px) scale(1.01) !important;
+  filter: brightness(1.02) !important;
+}
+
+.detailButton:not(.btnPlay),
+.mainDetailButtons .emby-button:not(.btnPlay),
+.detailButtons .emby-button:not(.btnPlay) {
+  background: rgba(255, 255, 255, 0.055) !important;
+  color: var(--sakaii-text-primary) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: var(--sakaii-shadow-soft) !important;
+}
+
+.detailButton:not(.btnPlay):hover,
+.mainDetailButtons .emby-button:not(.btnPlay):hover,
+.detailButtons .emby-button:not(.btnPlay):hover {
+  background: rgba(255, 255, 255, 0.085) !important;
+  border-color: rgba(var(--accent), 0.18) !important;
+  transform: translateY(-2px) !important;
+}
+
+.detailPagePrimaryContainer .sectionTitle,
+.detailPageSecondaryContainer .sectionTitle {
+  font-size: clamp(1.15rem, 1rem + 0.45vw, 1.45rem) !important;
+  margin-bottom: 12px !important;
+}
+
+.detailPageSecondaryContainer {
+  margin-top: 28px !important;
+}
+
+.itemDetailsGroup,
+.detailSection,
+.detailPageSecondaryContainer .section {
+  padding: 18px 20px !important;
+  border-radius: var(--sakaii-radius-lg) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
+    rgba(16, 18, 22, 0.44) !important;
+  border: 1px solid rgba(255, 255, 255, 0.045) !important;
+  box-shadow: var(--sakaii-shadow-soft) !important;
+}
+
+.itemDetailsGroup + .itemDetailsGroup,
+.detailSection + .detailSection {
+  margin-top: 16px !important;
+}
+
+.videoSubtitles {
+  background: transparent !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85), 0 0 30px rgba(0, 0, 0, 0.45) !important;
+}
+
+#loginPage,
+#loginPage .pageContainer,
+#loginPage .skinBody {
+  background: transparent !important;
+}
+
+#loginPage {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#loginPage::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 24%, rgba(var(--accent), 0.14), transparent 26%),
+    radial-gradient(circle at 76% 18%, rgba(var(--sakaii-accent-strong-rgb), 0.1), transparent 24%),
+    linear-gradient(180deg, rgba(8, 9, 11, 0.32), rgba(8, 9, 11, 0.72)),
+    url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=2000&q=80")
+      center/cover no-repeat !important;
+  filter: saturate(0.78) contrast(1.02) brightness(0.54);
+  transform: scale(1.03);
+  z-index: -2;
+}
+
+#loginPage::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 20%),
+    linear-gradient(180deg, rgba(10, 11, 13, 0.1), rgba(10, 11, 13, 0.72));
+  z-index: -1;
+  pointer-events: none;
+}
+
+#loginPage .padded-left.padded-right.padded-bottom-page {
+  width: min(460px, calc(100vw - 32px)) !important;
+  margin: auto !important;
+  padding: 34px 30px 28px !important;
+  border-radius: 30px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.025)),
+    rgba(17, 19, 23, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(var(--sakaii-blur-strong)) saturate(135%) !important;
+  -webkit-backdrop-filter: blur(var(--sakaii-blur-strong)) saturate(135%) !important;
+  box-shadow: var(--sakaii-shadow-login) !important;
+}
+
+#loginPage .readOnlyContent,
+#loginPage form {
+  position: relative;
+  z-index: 1;
+}
+
+#loginPage h1 {
+  display: block !important;
+  margin: 0 0 10px !important;
+  font-size: clamp(1.75rem, 1.4rem + 1vw, 2.3rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.04em !important;
+  color: var(--sakaii-text-primary) !important;
+}
+
+#loginPage .manualLoginForm::before,
+#loginPage form::before {
+  content: "Sakaii OS";
+  display: block;
+  margin-bottom: 12px;
+  color: var(--sakaii-text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+#loginPage .inputContainer {
+  margin-bottom: 14px !important;
+}
+
+#loginPage .inputContainer .emby-input {
+  min-height: 54px !important;
+  padding: 0 18px !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+}
+
+#loginPage .inputContainer .emby-input:focus {
+  border-color: rgba(var(--accent), 0.36) !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  box-shadow:
+    0 0 0 4px rgba(var(--accent), 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+}
+
+#loginPage .raised,
+#loginPage .btnSubmit,
+#loginPage button[type="submit"] {
+  min-height: 54px !important;
+  margin-top: 18px !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(235, 239, 244, 0.92)) !important;
+  color: #0a0b0d !important;
+  border: 1px solid rgba(255, 255, 255, 0.58) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+  box-shadow: var(--sakaii-shadow-hero) !important;
+}
+
+#loginPage .raised:hover,
+#loginPage .btnSubmit:hover,
+#loginPage button[type="submit"]:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.02) !important;
+}
+
+#loginPage .checkboxLabel,
+#loginPage .fieldDescription,
+#loginPage .forgotPasswordLink,
+#loginPage .subText {
+  color: var(--sakaii-text-secondary) !important;
+}
+
+#loginPage .forgotPasswordLink,
+#loginPage a {
+  color: var(--sakaii-accent-soft) !important;
+}
+
+#loginPage .visualLoginForm,
+#loginPage .loginDisclaimer,
+#loginPage .loginSidebar {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#castContent .card {
+  width: 154px !important;
+}
+
+#castContent .cardBox,
+#castContent .cardImageContainer {
+  border-radius: 999px !important;
+}
+
+#castContent .cardBox {
+  border: 1px solid rgba(255, 255, 255, 0.055) !important;
+}
+
+#castContent .cardScalable:hover .cardBox,
+#castContent .card:hover .cardBox {
+  transform: translateY(-4px) scale(1.03) !important;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --sakaii-shell-padding: 14px;
+    --sakaii-header-height: 64px;
+    --sakaii-drawer-width: 88vw;
+  }
+
+  .skinHeader,
+  .mainDrawer {
+    backdrop-filter: blur(12px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(120%) !important;
+  }
+
+  .skinHeader,
+  .skinHeader.semiTransparent,
+  .skinHeader.osdHeader {
+    top: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+    min-height: 62px !important;
+    padding: 0 10px !important;
+    border-radius: 22px !important;
+  }
+
+  .homeSectionsContainer {
+    padding-top: calc(var(--sakaii-header-height) + 10px) !important;
+  }
+
+  .headerButton,
+  .paper-icon-button-light,
+  .btnUserMenu,
+  .headerButton.headerButtonRight {
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
+
+  .headerTabs {
+    overflow-x: auto !important;
+    gap: 6px !important;
+    padding-bottom: 4px !important;
+    scrollbar-width: none;
+  }
+
+  .headerTabs::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .emby-tab-button {
+    min-height: 38px !important;
+    padding: 0 14px !important;
+    white-space: nowrap !important;
+  }
+
+  .mainDrawer {
+    width: 88vw !important;
+    border-radius: 0 22px 22px 0 !important;
+  }
+
+  .mainDrawer-scrollContainer {
+    padding-top: calc(var(--sakaii-header-height) + 12px) !important;
+  }
+
+  .sectionTitle {
+    font-size: clamp(1.05rem, 0.95rem + 0.45vw, 1.3rem) !important;
+  }
+
+  .cardText {
+    padding-top: 10px !important;
+  }
+
+  .cardText-first,
+  .cardTextButton {
+    font-size: 0.95rem !important;
+  }
+
+  .cardText-secondary,
+  .cardFooterText {
+    font-size: 0.82rem !important;
+  }
+
+  .detailLogo {
+    max-width: 72vw !important;
+  }
+
+  .detailPagePrimaryContainer,
+  .layout-tv .detailPagePrimaryContainer {
+    padding-top: 1.2rem !important;
+  }
+
+  .detail-clamp-text,
+  .overview-text,
+  .itemOverviewContent,
+  .detailSectionContent {
+    max-width: 100% !important;
+    font-size: 0.98rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .detailButtons,
+  .detailPagePrimaryContainer .mainDetailButtons {
+    gap: 10px !important;
+    align-items: stretch !important;
+  }
+
+  .detailButton,
+  .detailButtons .emby-button,
+  .mainDetailButtons .emby-button,
+  .btnPlay.detailButton {
+    min-height: 44px !important;
+    padding: 0 18px !important;
+    flex: 1 1 auto !important;
+    justify-content: center !important;
+  }
+
+  .itemDetailsGroup,
+  .detailSection,
+  .detailPageSecondaryContainer .section {
+    padding: 16px !important;
+    border-radius: var(--sakaii-radius-md) !important;
+  }
+
+  #loginPage .padded-left.padded-right.padded-bottom-page {
+    width: min(100vw - 20px, 100%) !important;
+    padding: 26px 20px 22px !important;
+    border-radius: 22px !important;
+  }
+
+  #loginPage .inputContainer .emby-input,
+  #loginPage .raised,
+  #loginPage .btnSubmit,
+  #loginPage button[type="submit"] {
+    min-height: 48px !important;
+  }
+
+  .dialog,
+  .actionSheetContent,
+  .selectionCommandsPanel,
+  .upNextDialog,
+  .prompt,
+  .paperList,
+  .contextMenu {
+    width: min(100vw - 16px, 100%) !important;
+    max-width: none !important;
+    border-radius: 20px !important;
+  }
+
+  .menuOption,
+  .listItem-button,
+  .navMenuOption,
+  .headerButton,
+  .paper-icon-button-light,
+  .detailButton,
+  .emby-button {
+    min-height: 44px !important;
+  }
+
+  .itemProgressBar,
+  .playbackProgress {
+    height: 5px !important;
+  }
+
+  .cardScalable:hover .cardBox,
+  .card:hover .cardBox {
+    transform: translateY(-3px) scale(1.01) !important;
+  }
+
+  .cardOverlayFab-primary,
+  .cardOverlayButton-br {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
+
+  #castContent .card {
+    width: 122px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .skinHeader,
+  .skinHeader.semiTransparent,
+  .skinHeader.osdHeader {
+    top: 8px !important;
+    left: 8px !important;
+    right: 8px !important;
+    min-height: 58px !important;
+    padding: 0 8px !important;
+  }
+
+  .homeSectionsContainer {
+    padding-top: calc(var(--sakaii-header-height) + 6px) !important;
+  }
+
+  .cardOverlayFab-primary,
+  .cardOverlayButton-br,
+  .headerButton,
+  .paper-icon-button-light {
+    min-width: 36px !important;
+    min-height: 36px !important;
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .detailButtons,
+  .detailPagePrimaryContainer .mainDetailButtons {
+    flex-direction: column !important;
+  }
+
+  .detailButton,
+  .detailButtons .emby-button,
+  .mainDetailButtons .emby-button,
+  .btnPlay.detailButton {
+    width: 100% !important;
+  }
+
+  #loginPage .padded-left.padded-right.padded-bottom-page {
+    padding: 22px 16px 18px !important;
+    border-radius: 18px !important;
+  }
+
+  #loginPage h1 {
+    font-size: 1.65rem !important;
+  }
+}
