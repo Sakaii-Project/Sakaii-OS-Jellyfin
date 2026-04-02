@@ -509,9 +509,22 @@ option {
 }
 
 .cardImage {
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  filter: none !important;
   transition:
     transform var(--sakaii-speed-slow) var(--sakaii-ease),
     filter var(--sakaii-speed-base) var(--sakaii-ease) !important;
+}
+
+.cardImageContainer canvas,
+.cardImageContainer .blurhash-canvas,
+.cardImageContainer .blurHashCanvas,
+.cardImageContainer .blurhash,
+.cardImageContainer .blurHash {
+  display: none !important;
+  opacity: 0 !important;
 }
 
 .cardOverlayContainer {
