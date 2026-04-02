@@ -652,6 +652,88 @@ option {
   display: block !important;
 }
 
+/*
+  Jellyfin media compatibility reset:
+  keep the Sakaii shell, but stop overriding the internal media rendering stack.
+*/
+.card .cardPadder,
+.cardScalable .cardPadder {
+  position: relative !important;
+  display: block !important;
+  background: transparent !important;
+}
+
+.card .cardImageContainer,
+.card .cardContent,
+.card .cardContent-button,
+.card .cardOverlayContainer,
+.cardScalable .cardImageContainer,
+.cardScalable .cardContent,
+.cardScalable .cardContent-button,
+.cardScalable .cardOverlayContainer {
+  position: absolute !important;
+  inset: 0 !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.card .cardImageContainer,
+.cardScalable .cardImageContainer {
+  overflow: hidden !important;
+  background: transparent !important;
+}
+
+.card .cardImage,
+.card .cardImageContainer img,
+.card .cardImageContainer .lazyImage,
+.card .cardImageContainer .lazy,
+.card .cardImageContainer .coverImage,
+.card .listItemImage,
+.cardScalable .cardImage,
+.cardScalable .cardImageContainer img,
+.cardScalable .cardImageContainer .lazyImage,
+.cardScalable .cardImageContainer .lazy,
+.cardScalable .cardImageContainer .coverImage,
+.cardScalable .listItemImage {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  object-fit: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  filter: none !important;
+}
+
+.card .cardOverlayContainer,
+.cardScalable .cardOverlayContainer {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.card .cardOverlayContainer::after,
+.cardScalable .cardOverlayContainer::after,
+.card .cardImageContainer canvas,
+.card .cardImageContainer svg,
+.card .cardImageContainer .blurhash-canvas,
+.card .cardImageContainer .blurHashCanvas,
+.card .cardImageContainer .blurhash,
+.card .cardImageContainer .blurHash,
+.cardScalable .cardImageContainer canvas,
+.cardScalable .cardImageContainer svg,
+.cardScalable .cardImageContainer .blurhash-canvas,
+.cardScalable .cardImageContainer .blurHashCanvas,
+.cardScalable .cardImageContainer .blurhash,
+.cardScalable .cardImageContainer .blurHash {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 /* Keep Jellyfin's native media layers intact and only theme the shell. */
 .cardPadder {
   position: relative !important;
