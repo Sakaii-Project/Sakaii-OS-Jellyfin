@@ -508,10 +508,25 @@ option {
   height: 100% !important;
 }
 
-.cardImage {
+.cardImage,
+.cardImageContainer img,
+.cardImageContainer .lazyImage,
+.cardImageContainer .lazy,
+.cardImageContainer .coverImage,
+.cardImageContainer .cardImageIcon,
+#castContent .cardImage,
+#castContent .cardImageContainer img {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 1 !important;
+  visibility: visible !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
+  object-fit: cover !important;
   filter: none !important;
   transition:
     transform var(--sakaii-speed-slow) var(--sakaii-ease),
@@ -522,12 +537,16 @@ option {
 .cardImageContainer .blurhash-canvas,
 .cardImageContainer .blurHashCanvas,
 .cardImageContainer .blurhash,
-.cardImageContainer .blurHash {
-  display: none !important;
+.cardImageContainer .blurHash,
+.cardImageContainer svg,
+.cardImageContainer .placeholderCard {
+  z-index: 1 !important;
   opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .cardOverlayContainer {
+  z-index: 3 !important;
   opacity: 0 !important;
   background:
     linear-gradient(180deg, rgba(8, 9, 11, 0.02) 0%, rgba(8, 9, 11, 0.3) 55%, rgba(8, 9, 11, 0.7) 100%) !important;
