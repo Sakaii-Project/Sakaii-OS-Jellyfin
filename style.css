@@ -349,7 +349,23 @@ h4,
   border-radius: 14px !important;
 }
 
+.selectContainer,
+.selectLabel,
+.emby-select {
+  min-height: 54px !important;
+}
+
+.selectLabel {
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 16px !important;
+  line-height: 1.2 !important;
+}
+
 .selectArrowContainer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   color: var(--sakaii-text-secondary) !important;
 }
 
@@ -968,6 +984,20 @@ body:has(#loginPage) .skinHeader.osdHeader {
   margin: 0 !important;
 }
 
+#loginPage .cardPadder,
+#loginPage .cardContent,
+#loginPage .cardContent-button,
+#loginPage .cardOverlayContainer {
+  position: static !important;
+  inset: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+#loginPage .cardPadder {
+  padding-top: 0 !important;
+}
+
 #loginPage .cardBox {
   min-height: 72px !important;
   padding: 0 14px !important;
@@ -990,6 +1020,7 @@ body:has(#loginPage) .skinHeader.osdHeader {
   align-items: center !important;
   justify-content: center !important;
   min-height: 72px !important;
+  height: 72px !important;
 }
 
 #loginPage .cardText-first,
