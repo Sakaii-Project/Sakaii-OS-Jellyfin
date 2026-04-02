@@ -935,22 +935,23 @@ body:has(#loginPage) .skinHeader.osdHeader {
 }
 
 #loginPage .itemsContainer {
-  display: flex !important;
-  flex-wrap: wrap !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 110px)) !important;
   justify-content: center !important;
-  gap: 14px !important;
-  margin: 20px auto 28px !important;
+  gap: 16px !important;
+  max-width: 520px !important;
+  margin: 24px auto 30px !important;
 }
 
 #loginPage .card,
 #loginPage .cardScalable {
-  width: 92px !important;
+  width: 110px !important;
   margin: 0 !important;
 }
 
 #loginPage .cardBox {
-  min-height: 122px !important;
-  padding: 12px 10px !important;
+  min-height: 136px !important;
+  padding: 14px 10px !important;
   border-radius: 24px !important;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.018)),
@@ -960,9 +961,9 @@ body:has(#loginPage) .skinHeader.osdHeader {
 }
 
 #loginPage .cardImageContainer {
-  width: 58px !important;
-  height: 58px !important;
-  margin: 0 auto 12px !important;
+  width: 64px !important;
+  height: 64px !important;
+  margin: 0 auto 14px !important;
   border-radius: 999px !important;
   background:
     linear-gradient(180deg, rgba(var(--accent), 0.28), rgba(var(--accent), 0.12)),
@@ -1249,24 +1250,26 @@ body:has(#loginPage) .skinHeader.osdHeader {
   }
 
   #loginPage .itemsContainer {
-    gap: 10px !important;
+    grid-template-columns: repeat(3, minmax(0, 92px)) !important;
+    gap: 12px !important;
+    max-width: 320px !important;
     margin: 18px auto 22px !important;
   }
 
   #loginPage .card,
   #loginPage .cardScalable {
-    width: 78px !important;
+    width: 92px !important;
   }
 
   #loginPage .cardBox {
-    min-height: 108px !important;
+    min-height: 116px !important;
     border-radius: 20px !important;
     padding: 10px 8px !important;
   }
 
   #loginPage .cardImageContainer {
-    width: 50px !important;
-    height: 50px !important;
+    width: 54px !important;
+    height: 54px !important;
     margin-bottom: 10px !important;
   }
 
@@ -1363,11 +1366,17 @@ body:has(#loginPage) .skinHeader.osdHeader {
 
   #loginPage .card,
   #loginPage .cardScalable {
-    width: 72px !important;
+    width: 84px !important;
+  }
+
+  #loginPage .itemsContainer {
+    grid-template-columns: repeat(3, minmax(0, 84px)) !important;
+    gap: 10px !important;
+    max-width: 282px !important;
   }
 
   #loginPage .cardBox {
-    min-height: 98px !important;
+    min-height: 104px !important;
   }
 
   #loginPage .cardText-first,
