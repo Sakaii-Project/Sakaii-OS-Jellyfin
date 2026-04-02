@@ -836,10 +836,17 @@ h4,
   background: transparent !important;
 }
 
+body:has(#loginPage) .skinHeader,
+body:has(#loginPage) .skinHeader.semiTransparent,
+body:has(#loginPage) .skinHeader.osdHeader {
+  display: none !important;
+}
+
 #loginPage {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  min-height: 100vh !important;
 }
 
 #loginPage::before {
@@ -869,14 +876,15 @@ h4,
 }
 
 #loginPage .padded-left.padded-right.padded-bottom-page {
-  width: min(460px, calc(100vw - 32px)) !important;
+  width: min(760px, calc(100vw - 48px)) !important;
   margin: auto !important;
-  padding: 34px 30px 28px !important;
-  border-radius: 30px !important;
+  padding: 42px 38px 30px !important;
+  border-radius: 34px !important;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.025)),
-    rgba(17, 19, 23, 0.5) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    radial-gradient(circle at top, rgba(var(--accent), 0.08), transparent 48%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02)),
+    rgba(17, 19, 23, 0.56) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
   backdrop-filter: blur(var(--sakaii-blur-strong)) saturate(135%) !important;
   -webkit-backdrop-filter: blur(var(--sakaii-blur-strong)) saturate(135%) !important;
   box-shadow: var(--sakaii-shadow-login) !important;
@@ -890,23 +898,97 @@ h4,
 
 #loginPage h1 {
   display: block !important;
-  margin: 0 0 10px !important;
-  font-size: clamp(1.75rem, 1.4rem + 1vw, 2.3rem) !important;
+  margin: 0 0 12px !important;
+  text-align: center !important;
+  font-size: clamp(2.3rem, 1.8rem + 1.2vw, 3.35rem) !important;
   font-weight: 800 !important;
-  letter-spacing: -0.04em !important;
+  letter-spacing: -0.05em !important;
   color: var(--sakaii-text-primary) !important;
+  line-height: 0.95 !important;
 }
 
 #loginPage .manualLoginForm::before,
 #loginPage form::before {
   content: "Sakaii OS";
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  text-align: center;
   color: var(--sakaii-text-muted);
   font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
+}
+
+#loginPage .readOnlyContent p,
+#loginPage .subText,
+#loginPage .fieldDescription {
+  text-align: center !important;
+  color: var(--sakaii-text-muted) !important;
+}
+
+#loginPage .itemsContainer,
+#loginPage .cardContent,
+#loginPage .userLibraries {
+  position: relative;
+  z-index: 1;
+}
+
+#loginPage .itemsContainer {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  margin: 20px auto 28px !important;
+}
+
+#loginPage .card,
+#loginPage .cardScalable {
+  width: 92px !important;
+  margin: 0 !important;
+}
+
+#loginPage .cardBox {
+  min-height: 122px !important;
+  padding: 12px 10px !important;
+  border-radius: 24px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.018)),
+    rgba(20, 22, 27, 0.58) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+#loginPage .cardImageContainer {
+  width: 58px !important;
+  height: 58px !important;
+  margin: 0 auto 12px !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(180deg, rgba(var(--accent), 0.28), rgba(var(--accent), 0.12)),
+    rgba(255, 255, 255, 0.04) !important;
+}
+
+#loginPage .cardImage {
+  border-radius: 999px !important;
+}
+
+#loginPage .cardText {
+  padding-top: 0 !important;
+  text-align: center !important;
+}
+
+#loginPage .cardText-first,
+#loginPage .cardTextButton {
+  font-size: 0.98rem !important;
+  font-weight: 700 !important;
+  color: var(--sakaii-text-primary) !important;
+}
+
+#loginPage .cardText-secondary,
+#loginPage .cardFooterText {
+  font-size: 0.78rem !important;
+  color: var(--sakaii-text-muted) !important;
 }
 
 #loginPage .inputContainer {
@@ -933,8 +1015,8 @@ h4,
 #loginPage .raised,
 #loginPage .btnSubmit,
 #loginPage button[type="submit"] {
-  min-height: 54px !important;
-  margin-top: 18px !important;
+  min-height: 58px !important;
+  margin-top: 14px !important;
   border-radius: 999px !important;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(235, 239, 244, 0.92)) !important;
@@ -945,11 +1027,42 @@ h4,
   box-shadow: var(--sakaii-shadow-hero) !important;
 }
 
+#loginPage .raised.block,
+#loginPage .btnSubmit,
+#loginPage button[type="submit"] {
+  width: 100% !important;
+}
+
+#loginPage .raised + .raised,
+#loginPage .btnSubmit + .raised,
+#loginPage .raised + .btnSubmit,
+#loginPage button + button {
+  margin-top: 10px !important;
+}
+
+#loginPage .raised:nth-of-type(2),
+#loginPage .raised:nth-of-type(3),
+#loginPage .btnSubmit:nth-of-type(2),
+#loginPage .btnSubmit:nth-of-type(3) {
+  background: rgba(255, 255, 255, 0.055) !important;
+  color: var(--sakaii-text-primary) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  box-shadow: var(--sakaii-shadow-soft) !important;
+}
+
 #loginPage .raised:hover,
 #loginPage .btnSubmit:hover,
 #loginPage button[type="submit"]:hover {
   transform: translateY(-2px) !important;
   filter: brightness(1.02) !important;
+}
+
+#loginPage .raised:nth-of-type(2):hover,
+#loginPage .raised:nth-of-type(3):hover,
+#loginPage .btnSubmit:nth-of-type(2):hover,
+#loginPage .btnSubmit:nth-of-type(3):hover {
+  background: rgba(255, 255, 255, 0.085) !important;
+  border-color: rgba(var(--accent), 0.18) !important;
 }
 
 #loginPage .checkboxLabel,
@@ -970,6 +1083,13 @@ h4,
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+#loginPage .loginDisclaimer,
+#loginPage .loginFooter {
+  margin-top: 26px !important;
+  text-align: center !important;
+  color: var(--sakaii-text-muted) !important;
 }
 
 #castContent .card {
@@ -1113,8 +1233,8 @@ h4,
 
   #loginPage .padded-left.padded-right.padded-bottom-page {
     width: min(100vw - 20px, 100%) !important;
-    padding: 26px 20px 22px !important;
-    border-radius: 22px !important;
+    padding: 28px 20px 22px !important;
+    border-radius: 24px !important;
   }
 
   #loginPage .inputContainer .emby-input,
@@ -1122,6 +1242,32 @@ h4,
   #loginPage .btnSubmit,
   #loginPage button[type="submit"] {
     min-height: 48px !important;
+  }
+
+  #loginPage h1 {
+    font-size: 2rem !important;
+  }
+
+  #loginPage .itemsContainer {
+    gap: 10px !important;
+    margin: 18px auto 22px !important;
+  }
+
+  #loginPage .card,
+  #loginPage .cardScalable {
+    width: 78px !important;
+  }
+
+  #loginPage .cardBox {
+    min-height: 108px !important;
+    border-radius: 20px !important;
+    padding: 10px 8px !important;
+  }
+
+  #loginPage .cardImageContainer {
+    width: 50px !important;
+    height: 50px !important;
+    margin-bottom: 10px !important;
   }
 
   .dialog,
@@ -1213,5 +1359,19 @@ h4,
 
   #loginPage h1 {
     font-size: 1.65rem !important;
+  }
+
+  #loginPage .card,
+  #loginPage .cardScalable {
+    width: 72px !important;
+  }
+
+  #loginPage .cardBox {
+    min-height: 98px !important;
+  }
+
+  #loginPage .cardText-first,
+  #loginPage .cardTextButton {
+    font-size: 0.88rem !important;
   }
 }
