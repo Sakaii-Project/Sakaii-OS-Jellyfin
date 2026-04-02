@@ -478,6 +478,8 @@ option {
 
 .cardPadder {
   background: transparent !important;
+  position: relative !important;
+  display: block !important;
 }
 
 .cardImageContainer {
@@ -494,14 +496,16 @@ option {
 }
 
 .cardContent,
+.cardContent-button,
 .cardOverlayContainer {
+  position: absolute !important;
   inset: 0 !important;
 }
 
-.cardImage {
+.cardImageContainer,
+.cardContent {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
 }
 
 .cardImage {
