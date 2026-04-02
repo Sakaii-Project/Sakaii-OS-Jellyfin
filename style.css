@@ -923,6 +923,16 @@ option {
   background: transparent !important;
 }
 
+#loginPage.hide,
+#loginPage.hide .pageContainer,
+#loginPage.hide .skinBody,
+#loginPage.hide .padded-left.padded-right.padded-bottom-page {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 body:has(#loginPage) .skinHeader,
 body:has(#loginPage) .skinHeader.semiTransparent,
 body:has(#loginPage) .skinHeader.osdHeader {
