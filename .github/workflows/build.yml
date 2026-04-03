@@ -1,0 +1,29 @@
+name: Build & Minify
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install clean-css-cli
+        run: npm install -g clean-css-cli
+
+      - name: Minify CSS
+        run: |
+          mkdir -p dist/fonts
+          cleancss -o dist/style.min.css style.css
+          cleancss -o dist/tokens.min.css tokens.css
+          cp custom.js dist/custom.min.js
+          cp -r fonts/. dist/fonts/
+
+      - name: Deploy to dist branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: dist
+          publish_dir: ./dist

@@ -29,9 +29,10 @@ This is now usable as a first visual build, but it should still be tested agains
 
 ## Project Structure
 
-- `style.css`: main theme entry point
-- `tokens.css`: shared design tokens
+- `style.css`: main theme entry point (self-contained, includes inlined tokens)
+- `tokens.css`: shared design tokens (reference file)
 - `custom.js`: optional UX enhancements
+- `fonts/`: self-hosted Inter font files
 - `docs/vision.md`: visual and product direction
 - `docs/roadmap.md`: implementation phases
 
@@ -43,13 +44,34 @@ This is now usable as a first visual build, but it should still be tested agains
 - one controlled accent family
 - consistent UI components across Jellyfin screens
 
+## Compatibility
+
+| Jellyfin Version | Status |
+|------------------|--------|
+| 10.11.x | Supported (CSS in Branding) |
+| 10.10.x | Supported (CSS in General) |
+| 10.9.x | Mostly works, some selectors may differ |
+
+**Important:**
+- The admin dashboard is NOT themed on Jellyfin 10.11+ (this is a Jellyfin limitation, not a theme bug — the dashboard is a separate React app that does not load custom CSS).
+- The **Dark** base theme must be selected in your Jellyfin display settings for Sakaii OS to render correctly.
+- Backdrops must be enabled in Settings > Display > Backdrops.
+
 ## Installation
+
+### Recommended Workflow
+
+0. Set your Jellyfin base theme to **Dark** (Settings > Display > Theme).
+1. Enable **Backdrops** in Settings > Display.
+2. Apply the CSS only.
+3. Test desktop and mobile layouts.
+4. Adjust any plugin-specific conflicts.
+5. Add optional JavaScript only after the visual layer feels stable.
 
 ### CSS
 
-In Jellyfin, go to:
-
-`Dashboard > General > Custom CSS`
+**Jellyfin 10.11+**: Dashboard > Branding > Custom CSS  
+**Jellyfin 10.10 and earlier**: Dashboard > General > Custom CSS
 
 Then add:
 
@@ -57,10 +79,29 @@ Then add:
 @import url('https://cdn.jsdelivr.net/gh/Sakaii-Project/Sakaii-OS-Jellyfin@main/style.css');
 ```
 
-If you prefer GitHub raw hosting instead of jsDelivr:
+For a pinned version (recommended for production):
+```css
+@import url('https://cdn.jsdelivr.net/gh/Sakaii-Project/Sakaii-OS-Jellyfin@v2.0.0/style.css');
+```
+
+> **Note:** Do not use `raw.githubusercontent.com` — it does not support `@import` of relative paths, which will break the font loading. Use jsDelivr only.
+
+### Fonts
+
+The Inter font is self-hosted in the `fonts/` directory of this repository. No external font requests are made, so no CSP (Content-Security-Policy) modifications are needed on your Jellyfin reverse proxy.
+
+The fonts are served automatically when using the jsDelivr import above.
+
+### Login Background
+
+The login page uses your Jellyfin splash screen image by default. Configure it in Dashboard > Branding > Login Splash Screen.
+
+To use a custom image instead, add this to your Custom CSS **before** the Sakaii import:
 
 ```css
-@import url('https://raw.githubusercontent.com/Sakaii-Project/Sakaii-OS-Jellyfin/main/style.css');
+:root {
+  --loginPageBgUrl: url('https://your-server/path/to/image.jpg');
+}
 ```
 
 ### JavaScript (Optional)
@@ -73,15 +114,8 @@ script.src = 'https://cdn.jsdelivr.net/gh/Sakaii-Project/Sakaii-OS-Jellyfin@main
 document.head.appendChild(script);
 ```
 
-## Recommended Workflow
-
-1. Apply the CSS only.
-2. Test desktop and mobile layouts.
-3. Adjust any plugin-specific conflicts.
-4. Add optional JavaScript only after the visual layer feels stable.
-
 ## Notes
 
-- `tokens.css` is imported by `style.css`, so you only need to import `style.css`.
+- `style.css` is self-contained and includes inlined design tokens — you only need to import `style.css`.
 - If your browser caches old CSS aggressively, force refresh after changes.
 - Some plugins can alter Jellyfin layouts and may need dedicated compatibility tweaks.

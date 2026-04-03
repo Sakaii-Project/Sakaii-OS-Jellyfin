@@ -1,5 +1,112 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
-@import url("./tokens.css");
+
+/* ── Inter font — self-hosted, no CSP issues ── */
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Design tokens (inlined for self-contained usage) ── */
+/* Source: tokens.css — keep in sync */
+:root {
+  color-scheme: dark;
+
+  /* Core palette */
+  --sakaii-bg-0: #0a0b0d;
+  --sakaii-bg-1: #111317;
+  --sakaii-bg-2: #171a1f;
+  --sakaii-bg-3: #1d2128;
+
+  /* Glass and borders */
+  --sakaii-surface-glass: rgba(22, 24, 30, 0.58);
+  --sakaii-surface-glass-strong: rgba(22, 24, 30, 0.74);
+  --sakaii-border-subtle: rgba(255, 255, 255, 0.08);
+  --sakaii-border-soft: rgba(255, 255, 255, 0.04);
+
+  /* Typography */
+  --sakaii-text-primary: #f5f7fa;
+  --sakaii-text-secondary: #c7ced8;
+  --sakaii-text-muted: #8e98a6;
+
+  /* Accent */
+  --sakaii-accent: #8fa8c7;
+  --sakaii-accent-soft: #b8c9db;
+  --sakaii-accent-rgb: 143, 168, 199;
+  --sakaii-accent-strong-rgb: 184, 201, 219;
+
+  /* Feedback */
+  --sakaii-success: #7fb59a;
+  --sakaii-warning: #d6b36a;
+  --sakaii-danger: #b86a6a;
+
+  /* Radius */
+  --sakaii-radius-sm: 10px;
+  --sakaii-radius-md: 16px;
+  --sakaii-radius-lg: 24px;
+  --sakaii-radius-xl: 32px;
+
+  /* Shadows */
+  --sakaii-shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.28);
+  --sakaii-shadow-depth: 0 20px 60px rgba(0, 0, 0, 0.4);
+  --sakaii-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 18px 50px rgba(0, 0, 0, 0.36);
+  --sakaii-shadow-header: 0 18px 45px rgba(0, 0, 0, 0.28);
+  --sakaii-shadow-card: 0 16px 34px rgba(0, 0, 0, 0.2);
+  --sakaii-shadow-card-hover: 0 24px 52px rgba(0, 0, 0, 0.28);
+  --sakaii-shadow-hero: 0 28px 80px rgba(0, 0, 0, 0.42);
+  --sakaii-shadow-login: 0 30px 90px rgba(0, 0, 0, 0.42);
+  --sakaii-shadow-popover: 0 22px 60px rgba(0, 0, 0, 0.34);
+
+  /* Motion */
+  --sakaii-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --sakaii-speed-fast: 180ms;
+  --sakaii-speed-base: 260ms;
+  --sakaii-speed-slow: 320ms;
+
+  /* Blur */
+  --sakaii-blur-soft: 10px;
+  --sakaii-blur-strong: 28px;
+
+  /* Layout */
+  --sakaii-shell-padding: 24px;
+  --sakaii-header-height: 72px;
+  --sakaii-drawer-width: 280px;
+
+}
 
 /*
   Sakaii OS for Jellyfin
@@ -8,8 +115,13 @@
 */
 
 :root {
+  color-scheme: dark;
   --accent: var(--sakaii-accent-rgb);
   --rounding: 16px;
+  --theme-primary-color: var(--sakaii-accent);
+  --theme-text-color: var(--sakaii-text-primary);
+  --theme-secondary-text-color: var(--sakaii-text-secondary);
+  --theme-background-color: var(--sakaii-bg-0);
 }
 
 * {
@@ -54,7 +166,7 @@ h4,
 .button,
 .emby-input,
 .emby-textarea {
-  font-family: "Inter", sans-serif !important;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 
 .skinBody,
@@ -105,18 +217,17 @@ h4,
 
 .skinHeader,
 .skinHeader.semiTransparent,
-.skinHeader.osdHeader,
 .mainDrawer {
   background: var(--sakaii-surface-glass) !important;
   border: 1px solid var(--sakaii-border-soft) !important;
   backdrop-filter: blur(var(--sakaii-blur-soft)) saturate(125%) !important;
   -webkit-backdrop-filter: blur(var(--sakaii-blur-soft)) saturate(125%) !important;
   box-shadow: var(--sakaii-shadow-header) !important;
+  will-change: backdrop-filter !important;
 }
 
 .skinHeader,
-.skinHeader.semiTransparent,
-.skinHeader.osdHeader {
+.skinHeader.semiTransparent {
   top: 14px !important;
   left: 18px !important;
   right: 18px !important;
@@ -127,6 +238,19 @@ h4,
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
     var(--sakaii-surface-glass) !important;
+}
+
+.skinHeader.osdHeader {
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  border-radius: 0 !important;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent) !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 .skinHeader-withBackground,
@@ -179,6 +303,10 @@ h4,
     linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
     var(--sakaii-surface-glass-strong) !important;
 }
+
+/* To disable blur effects on low-power devices, add to your Custom CSS:
+   .skinHeader, .mainDrawer { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+*/
 
 .mainDrawer-scrollContainer {
   padding-top: calc(var(--sakaii-header-height) + 18px) !important;
@@ -256,6 +384,17 @@ h4,
   padding-top: calc(var(--sakaii-header-height) + 22px) !important;
 }
 
+.mainAnimatedPage,
+.libraryPage,
+.itemDetailPage,
+.adminPage,
+.myPreferencesPage,
+.searchPage,
+.nowPlayingPage,
+.lyricsPage {
+  padding-top: calc(var(--sakaii-header-height) + 28px) !important;
+}
+
 .sectionTitleContainer,
 .sectionTitleContainer-cards {
   margin-bottom: 10px !important;
@@ -310,8 +449,6 @@ h4,
 .paperList,
 .contextMenu,
 .toast,
-.dashboardSection,
-.dashboardContent,
 .cardContent-shadow,
 .programCardContent {
   background:
@@ -321,6 +458,18 @@ h4,
   box-shadow: var(--sakaii-shadow-popover) !important;
   border-radius: var(--sakaii-radius-md) !important;
 }
+
+/* Dashboard styling — disabled on Jellyfin 10.11+ (dashboard is a separate React app that does not load custom CSS)
+.dashboardSection,
+.dashboardContent {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012)),
+    rgba(20, 22, 27, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: var(--sakaii-shadow-popover) !important;
+  border-radius: var(--sakaii-radius-md) !important;
+}
+*/
 
 .listItem-button,
 .menuOption,
@@ -369,9 +518,12 @@ h4,
   color: var(--sakaii-text-secondary) !important;
 }
 
+/* Native <select> and <option> styling is limited by browser rendering.
+   These styles apply on Chrome/Edge but are ignored on Firefox, Safari, and mobile browsers.
+   Full control requires JavaScript-based custom dropdowns (out of scope for CSS-only theme). */
 select,
 option {
-  background: #1a1d23 !important;
+  background: var(--sakaii-bg-2) !important;
   color: var(--sakaii-text-primary) !important;
 }
 
@@ -533,15 +685,32 @@ option {
     filter var(--sakaii-speed-base) var(--sakaii-ease) !important;
 }
 
-.cardImageContainer canvas,
-.cardImageContainer .blurhash-canvas,
-.cardImageContainer .blurHashCanvas,
-.cardImageContainer .blurhash,
-.cardImageContainer .blurHash,
-.cardImageContainer svg,
-.cardImageContainer .placeholderCard {
+.card .cardImageContainer canvas,
+.card .cardImageContainer .blurhash-canvas,
+.card .cardImageContainer .blurHashCanvas,
+.card .cardImageContainer .blurhash,
+.card .cardImageContainer .blurHash,
+.cardScalable .cardImageContainer canvas,
+.cardScalable .cardImageContainer .blurhash-canvas,
+.cardScalable .cardImageContainer .blurHashCanvas,
+.cardScalable .cardImageContainer .blurhash,
+.cardScalable .cardImageContainer .blurHash {
+  position: absolute !important;
+  inset: 0 !important;
   z-index: 1 !important;
-  opacity: 0 !important;
+  opacity: 0.35 !important;
+  filter: brightness(0.4) saturate(0.5) !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+  transition: opacity 0.4s ease !important;
+}
+
+.card .cardImageContainer svg,
+.card .cardImageContainer .placeholderCard,
+.cardScalable .cardImageContainer svg,
+.cardScalable .cardImageContainer .placeholderCard {
+  z-index: 1 !important;
+  opacity: 0.15 !important;
   pointer-events: none !important;
 }
 
@@ -652,122 +821,6 @@ option {
   display: block !important;
 }
 
-/*
-  Jellyfin media compatibility reset:
-  keep the Sakaii shell, but stop overriding the internal media rendering stack.
-*/
-.card .cardPadder,
-.cardScalable .cardPadder {
-  position: relative !important;
-  display: block !important;
-  background: transparent !important;
-}
-
-.card .cardImageContainer,
-.card .cardContent,
-.card .cardContent-button,
-.card .cardOverlayContainer,
-.cardScalable .cardImageContainer,
-.cardScalable .cardContent,
-.cardScalable .cardContent-button,
-.cardScalable .cardOverlayContainer {
-  position: absolute !important;
-  inset: 0 !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-.card .cardImageContainer,
-.cardScalable .cardImageContainer {
-  overflow: hidden !important;
-  background: transparent !important;
-}
-
-.card .cardImage,
-.card .cardImageContainer img,
-.card .cardImageContainer .lazyImage,
-.card .cardImageContainer .lazy,
-.card .cardImageContainer .coverImage,
-.card .listItemImage,
-.cardScalable .cardImage,
-.cardScalable .cardImageContainer img,
-.cardScalable .cardImageContainer .lazyImage,
-.cardScalable .cardImageContainer .lazy,
-.cardScalable .cardImageContainer .coverImage,
-.cardScalable .listItemImage {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  object-fit: cover !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  filter: none !important;
-}
-
-.card .cardOverlayContainer,
-.cardScalable .cardOverlayContainer {
-  background: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-.card .cardOverlayContainer::after,
-.cardScalable .cardOverlayContainer::after,
-.card .cardImageContainer canvas,
-.card .cardImageContainer svg,
-.card .cardImageContainer .blurhash-canvas,
-.card .cardImageContainer .blurHashCanvas,
-.card .cardImageContainer .blurhash,
-.card .cardImageContainer .blurHash,
-.cardScalable .cardImageContainer canvas,
-.cardScalable .cardImageContainer svg,
-.cardScalable .cardImageContainer .blurhash-canvas,
-.cardScalable .cardImageContainer .blurHashCanvas,
-.cardScalable .cardImageContainer .blurhash,
-.cardScalable .cardImageContainer .blurHash {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* Keep Jellyfin's native media layers intact and only theme the shell. */
-.cardPadder {
-  position: relative !important;
-}
-
-.cardImageContainer,
-.cardContent,
-.cardContent-button,
-.cardOverlayContainer {
-  top: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  left: 0 !important;
-}
-
-.cardImageContainer,
-.cardContent {
-  background-color: transparent !important;
-}
-
-.cardImage,
-.cardImage-icon,
-.listItemImage,
-.listItemImageButton {
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  filter: none !important;
-}
-
-.cardImageContainer canvas,
-.cardImageContainer svg[aria-hidden="true"] {
-  opacity: 0 !important;
-}
 
 .btnPlay,
 .raised,
@@ -1034,10 +1087,14 @@ option {
   pointer-events: none !important;
 }
 
-body:has(#loginPage) .skinHeader,
-body:has(#loginPage) .skinHeader.semiTransparent,
-body:has(#loginPage) .skinHeader.osdHeader {
+#loginPage ~ .skinHeader,
+#loginPage .skinHeader {
   display: none !important;
+}
+
+#loginPage {
+  position: relative;
+  z-index: 100 !important;
 }
 
 #loginPage {
@@ -1055,8 +1112,7 @@ body:has(#loginPage) .skinHeader.osdHeader {
     radial-gradient(circle at 20% 24%, rgba(var(--accent), 0.14), transparent 26%),
     radial-gradient(circle at 76% 18%, rgba(var(--sakaii-accent-strong-rgb), 0.1), transparent 24%),
     linear-gradient(180deg, rgba(8, 9, 11, 0.32), rgba(8, 9, 11, 0.72)),
-    url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=2000&q=80")
-      center/cover no-repeat !important;
+    var(--loginPageBgUrl, url("/Branding/Splashscreen?format=webp&quality=50&width=1920&blur=0")) center/cover no-repeat !important;
   filter: saturate(0.78) contrast(1.02) brightness(0.54);
   transform: scale(1.03);
   z-index: -2;
@@ -1105,8 +1161,7 @@ body:has(#loginPage) .skinHeader.osdHeader {
   line-height: 0.95 !important;
 }
 
-#loginPage .manualLoginForm::before,
-#loginPage form::before {
+#loginPage form:first-of-type::before {
   content: "Sakaii OS";
   display: block;
   margin-bottom: 14px;
@@ -1318,6 +1373,81 @@ body:has(#loginPage) .skinHeader.osdHeader {
   transform: translateY(-4px) scale(1.03) !important;
 }
 
+/* ── Settings & internal pages ── */
+
+.myPreferencesPage,
+.adminPage,
+.searchPage,
+.nowPlayingPage,
+#myPreferencesMenuPage,
+#displayPreferencesPage {
+  color: var(--sakaii-text-primary) !important;
+}
+
+#myPreferencesMenuPage .listItemBody,
+#myPreferencesMenuPage .listItemBodyText {
+  color: var(--sakaii-text-secondary) !important;
+}
+
+#myPreferencesMenuPage .listItemIcon {
+  color: var(--sakaii-text-muted) !important;
+}
+
+.nowPlayingBar {
+  background: var(--sakaii-surface-glass-strong) !important;
+  backdrop-filter: blur(var(--sakaii-blur-soft)) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(var(--sakaii-blur-soft)) saturate(120%) !important;
+  border-top: 1px solid var(--sakaii-border-subtle) !important;
+}
+
+.nowPlayingBar .nowPlayingBarCenter .playPauseButton,
+.nowPlayingBar .nowPlayingBarCenter .nextTrackButton,
+.nowPlayingBar .nowPlayingBarCenter .previousTrackButton {
+  color: var(--sakaii-text-primary) !important;
+}
+
+.nowPlayingBarPositionContainer .mdl-slider-background-lower {
+  background: linear-gradient(90deg, rgba(var(--accent), 0.88), rgba(var(--sakaii-accent-strong-rgb), 0.95)) !important;
+}
+
+/* ── Player & OSD ── */
+
+.videoOsdBottom {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.85), transparent) !important;
+  padding-bottom: 16px !important;
+}
+
+.osdHeader {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent) !important;
+}
+
+.osdTitle {
+  color: var(--sakaii-text-primary) !important;
+  font-weight: 700 !important;
+}
+
+.osdTimeText {
+  color: var(--sakaii-text-secondary) !important;
+}
+
+.upNextContainer {
+  background: var(--sakaii-surface-glass-strong) !important;
+  border: 1px solid var(--sakaii-border-subtle) !important;
+  border-radius: var(--sakaii-radius-lg) !important;
+  backdrop-filter: blur(var(--sakaii-blur-soft)) !important;
+  -webkit-backdrop-filter: blur(var(--sakaii-blur-soft)) !important;
+  box-shadow: var(--sakaii-shadow-depth) !important;
+}
+
+.upNextDialog-countdownText {
+  color: var(--sakaii-text-muted) !important;
+}
+
+.osdControls .toggleRepeatButton,
+.osdControls .btnShuffle {
+  color: var(--sakaii-text-secondary) !important;
+}
+
 @media (max-width: 768px) {
   :root {
     --sakaii-shell-padding: 14px;
@@ -1327,19 +1457,27 @@ body:has(#loginPage) .skinHeader.osdHeader {
 
   .skinHeader,
   .mainDrawer {
-    backdrop-filter: blur(12px) saturate(120%) !important;
-    -webkit-backdrop-filter: blur(12px) saturate(120%) !important;
+    backdrop-filter: blur(8px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(120%) !important;
+    will-change: backdrop-filter !important;
   }
 
   .skinHeader,
-  .skinHeader.semiTransparent,
-  .skinHeader.osdHeader {
+  .skinHeader.semiTransparent {
     top: 10px !important;
     left: 10px !important;
     right: 10px !important;
     min-height: 62px !important;
     padding: 0 10px !important;
     border-radius: 22px !important;
+  }
+
+  .skinHeader.osdHeader {
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    border-radius: 0 !important;
   }
 
   .homeSectionsContainer {
@@ -1525,13 +1663,20 @@ body:has(#loginPage) .skinHeader.osdHeader {
 
 @media (max-width: 480px) {
   .skinHeader,
-  .skinHeader.semiTransparent,
-  .skinHeader.osdHeader {
+  .skinHeader.semiTransparent {
     top: 8px !important;
     left: 8px !important;
     right: 8px !important;
     min-height: 58px !important;
     padding: 0 8px !important;
+  }
+
+  .skinHeader.osdHeader {
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    border-radius: 0 !important;
   }
 
   .homeSectionsContainer {
