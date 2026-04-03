@@ -194,9 +194,7 @@ h4,
 }
 
 .skinBody,
-.pageContainer,
-.mainDrawer,
-.skinHeader {
+.pageContainer {
   position: relative;
 }
 
@@ -228,6 +226,7 @@ h4,
 
 .skinHeader,
 .skinHeader.semiTransparent {
+  z-index: 1100 !important;
   top: 14px !important;
   left: 18px !important;
   right: 18px !important;
@@ -278,6 +277,9 @@ h4,
 .paper-icon-button-light,
 .btnUserMenu,
 .headerButton.headerButtonRight {
+  position: relative !important;
+  z-index: 2 !important;
+  pointer-events: auto !important;
   min-width: 42px !important;
   min-height: 42px !important;
   border-radius: 999px !important;
@@ -296,6 +298,7 @@ h4,
 }
 
 .mainDrawer {
+  z-index: 1200 !important;
   width: min(var(--sakaii-drawer-width), 88vw) !important;
   border-radius: 0 28px 28px 0 !important;
   border-left: none !important;
@@ -386,7 +389,6 @@ h4,
 
 .mainAnimatedPage,
 .libraryPage,
-.itemDetailPage,
 .adminPage,
 .myPreferencesPage,
 .searchPage,
@@ -637,7 +639,7 @@ option {
 .cardImageContainer {
   position: relative;
   overflow: hidden !important;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)) !important;
+  background-color: rgba(255, 255, 255, 0.03) !important;
 }
 
 .cardContent,
@@ -671,6 +673,7 @@ option {
   position: absolute !important;
   inset: 0 !important;
   z-index: 2 !important;
+  display: block !important;
   width: 100% !important;
   height: 100% !important;
   opacity: 1 !important;
@@ -901,7 +904,7 @@ option {
 .layout-tv .detailPagePrimaryContainer {
   position: relative;
   z-index: 1;
-  padding-top: clamp(2rem, 3vw, 4rem) !important;
+  padding-top: calc(var(--sakaii-header-height) + 1rem) !important;
 }
 
 .detailPageWrapperContainer::before {
@@ -1542,7 +1545,7 @@ option {
 
   .detailPagePrimaryContainer,
   .layout-tv .detailPagePrimaryContainer {
-    padding-top: 1.2rem !important;
+    padding-top: calc(var(--sakaii-header-height) + 0.5rem) !important;
   }
 
   .detail-clamp-text,
